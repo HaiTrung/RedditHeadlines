@@ -43,8 +43,8 @@ function fetchPosts(subreddit) {
     return dispatch => {
         dispatch(requestPosts(subreddit))
         return fetch(`http://www.reddit.com/r/${subreddit}.json`)
-                .then(response => response.json())
-                .then(json => dispatch(receivePosts(subreddit, json)))
+            .then(response => response.json())
+            .then(json => dispatch(receivePosts(subreddit, json)))
     }
 }
 
@@ -60,7 +60,6 @@ function shouldFetchPosts(state, subreddit) {
 }
 
 export function fetchPostsIfNeeded(subreddit) {
-
     return (dispatch, getState) => {
         if (shouldFetchPosts(getState(), subreddit)) {
             return dispatch(fetchPosts(subreddit))
